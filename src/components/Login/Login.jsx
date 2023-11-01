@@ -3,13 +3,18 @@ import Header from "../Header/Header";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
-import { NETFLIX_BANNER } from "../../utils/constants";
+import { NETFLIX_BANNER, PROFILE_IMAGES } from "../../utils/constants";
 import { checkValidData } from "../../utils/validate";
 import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../redux/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const [data, setData] = useState(false);
   const [isSignInform, setIsSignInform] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
@@ -36,7 +41,27 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
+
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: PROFILE_IMAGES[Math.round(Math.random() * 10)],
+          })
+            .then(() => {
+              // Profile updated!
+              const { uid, email, displayName, photoURL } = user;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
           navigate("/browse");
         })
         .catch((error) => {
@@ -54,7 +79,9 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+
+          setData(true);
+
           navigate("/browse");
         })
         .catch((error) => {
