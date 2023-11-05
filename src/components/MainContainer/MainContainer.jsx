@@ -1,6 +1,7 @@
 import React from "react";
 import VideoContainer from "./VideoContainer";
 import VideoTitle from "./VideoTitle";
+import SecondaryConatainer from "./SecondaryConatainer";
 import { useSelector } from "react-redux";
 
 export default function MainContainer() {
@@ -14,6 +15,7 @@ export default function MainContainer() {
     <div className="">
       <VideoTitle title={original_title} overview={overview} />
       <VideoContainer />
+      <SecondaryConatainer />
     </div>
   );
 }
