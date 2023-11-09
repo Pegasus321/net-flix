@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import useData from "../../hooks/useData";
 import { useSelector } from "react-redux";
 
-// import "./css.css";
-
 export default function SecondaryConatainer() {
   const TrendingData = useSelector((store) => store.movies?.nowPlayingTrending);
 
