@@ -42,7 +42,7 @@ export default function VideoTitle({ title, overview }) {
           className="px-2 md:p-3 sm:px-6 md:px-12 text-sm md:text-2xl font-semibold bg-[#6d6d6e] rounded-sm sm:rounded-[4px]  md:rounded-lg bg-opacity-70 flex items-center justify-center hover:bg-opacity-40 "
         >
           <AiOutlineInfoCircle className="mr-2 text-base md:text-2xl" />
-          More Info
+          More Infoo
         </button>
         <Preview show={show} handleOuterBoxClick={handleOuterBoxClick} />
       </div>
