@@ -17,4 +17,4 @@ export default function VideoContainer() {
     </>
   );
 }
-// &controls=0&showinfo=0&rel=0&iv_load_policy=0&modestbranding=1
+//&iv_load_policy=0&modestbranding=1
